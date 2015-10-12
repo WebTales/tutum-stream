@@ -24,8 +24,8 @@ def on_message(ws, message):
             service = get_resource(parents[0])
             service_as_JSON = json.loads(service)
             image_name = service_as_JSON.get('image_name')
-            image_name = service_as_JSON.get('image_name')
-            if 'apache' in service.image_name or 'nginx' in service.image_name:
+            print(image_name)
+            if 'apache' in image_name or 'nginx' in image_name:
                 print('New web container : ' + container_uuid + 'is running')
 
 def on_open(ws):
