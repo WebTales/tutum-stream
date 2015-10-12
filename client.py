@@ -30,10 +30,10 @@ def on_message(ws, message):
             if 'apache' in image_name or 'nginx' in image_name:
                 print('New web container : ' + container_uuid + 'is running')
                 # get local config from other running container in the service
-                current_num_containers = service_as_JSON.get('current_num_containers')
-                if current_num_containers > 1:
-                    containers = service_as_JSON.get('containers').remove(resource_uri)
-                    print('Getting local config from ' + containers[0])
+                #current_num_containers = service_as_JSON.get('current_num_containers')
+                #if current_num_containers > 1:
+                #    containers = service_as_JSON.get('containers').remove(resource_uri)
+                #    print('Getting local config from ' + containers[0])
 
 def on_open(ws):
     print "Connected"
