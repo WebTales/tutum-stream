@@ -12,6 +12,7 @@ def on_close(ws):
     print "### closed ###"
  
 def on_message(ws, message):
+    print(message)
     msg_as_JSON = json.loads(message)
     type = msg_as_JSON.get('type')
     action = msg_as_JSON.get('action')
