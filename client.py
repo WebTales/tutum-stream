@@ -20,7 +20,7 @@ def on_message(ws, message):
     state = msg_as_JSON.get('state')
     resource_uri = msg_as_JSON.get('resource_uri')
     if type:
-        if type == 'container' and state == 'running':
+        if type == 'container' and action == 'create':
             container_uuid = str(resource_uri).split('/')[-2]
             service = get_resource(parents[0])
             service_as_JSON = json.loads(service)
