@@ -22,6 +22,7 @@ def on_message(ws, message):
     if type:
         if type == 'container' and action == 'create':
             container_uuid = str(resource_uri).split('/')[-2]
+            parents = msg_as_JSON.get("parents")
             service = get_resource(parents[0])
             service_as_JSON = json.loads(service)
             image_name = service_as_JSON.get('image_name')
