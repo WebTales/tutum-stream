@@ -20,7 +20,7 @@ def on_message(ws, message):
     state = msg_as_JSON.get('state')
     resource_uri = msg_as_JSON.get('resource_uri')
     if type:
-        if type == 'container' and action == 'create':
+        if type == 'container' and action == 'update' and state == 'Running':
             container_uuid = str(resource_uri).split('/')[-2]
             parents = msg_as_JSON.get("parents")
             service = get_resource(parents[0])
@@ -29,6 +29,11 @@ def on_message(ws, message):
             print(image_name)
             if 'apache' in image_name or 'nginx' in image_name:
                 print('New web container : ' + container_uuid + 'is running')
+                # get local config from other running container in the service
+                current_num_containers = service_as_JSON.get('current_num_containers')
+                if current_num_containers > 1:
+                    containers = service_as_JSON.get('containers').remove(resource_uri)
+                    print('Getting local config from ' + containers[0])
 
 def on_open(ws):
     print "Connected"
