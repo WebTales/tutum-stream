@@ -1,7 +1,5 @@
 import os
 import tutum
-
-from integrations.utilities import get_resource
  
 def on_error(event):
     print error

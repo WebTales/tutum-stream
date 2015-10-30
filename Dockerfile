@@ -1,14 +1,9 @@
-FROM gliderlabs/alpine:3.1
+FROM ubuntu:trusty
 
-RUN apk add --update \
-    python \
-    python-dev \
-    py-pip \
-    build-base \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
     apt-get clean && \
-    pip install python-tutum==0.16.21 && \
-    rm -rf /var/cache/apk/*
+    pip install python-tutum==0.16.21
 
 COPY . /app
 WORKDIR /app
